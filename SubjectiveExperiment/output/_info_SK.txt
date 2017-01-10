@@ -1,0 +1,11 @@
+Reprezentácia vyčistených nahrávok:
+
+---------------------------------------------------------------------------------------------------
+Nahrávka                 Význam
+---------------------------------------------------------------------------------------------------
+*_DAPNet.NDeclicker      * vyčistená naivným algoritmom
+*_DAPNet.KLDeclicker     * vyčistená Kasparis-Laneovým algoritmom
+*_DAPNet.ARDeclicker     * vyčistená autoregresívnym algoritmom
+*_DAPNet.SARDeclicker    * vyčistená sínusoidovo rozšíreným autoregresívnym algoritmom
+*_DAPNet.NNDeclicker     * vyčistená algoritmom založeným na neurónovej sieti
+---------------------------------------------------------------------------------------------------

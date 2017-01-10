@@ -1,0 +1,23 @@
+Reprezentácia jednotlivých sĺpcov:
+Výkon hodnotený v škále -10 (nežiaduca zmena) do 10 (žiaduca zmena).
+
+---------------------------------------------------------------------------------------------------
+Stĺpec    Význam
+---------------------------------------------------------------------------------------------------
+01        číslo poslucháča
+02        výkon nad nahrávkou Mussorgsky
+03        výkon nad nahrávkou Strauss
+04        výkon nad nahrávkou Vega
+---------------------------------------------------------------------------------------------------
+
+Reprezentácia jednotlivých listov:
+
+---------------------------------------------------------------------------------------------------
+List      Význam
+---------------------------------------------------------------------------------------------------
+N         výsledky naivného algoritmu
+KL        výsledky Kasparis-Laneovho algoritmu
+AR        výsledky autoregresívneho algoritmu
+SAR       výsledky sínusoidovo rozšíreného algoritmu
+NN        výsledky algoritmu založenom na neurónových sietiach
+---------------------------------------------------------------------------------------------------

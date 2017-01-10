@@ -1,0 +1,132 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BAKALÁRSKA PRÁCA                                                           %%
+%%                                                                            %%
+%% Názov (sk): Algoritmy detekcie a korekcie lokálnych                        %%
+%%             znehodnotení digitálneho audio signálu                         %%
+%% Názov (en): Algorithms for Detection and Correction of Local               %%
+%%             Degradations in Digital Audio Signals                          %%
+%%                                                                            %%
+%% Autor: Jakub Kúdela                                                        %%
+%% Vedúci: Mgr. Daniel Toropila                                               %%
+%%                                                                            %%
+%% Akademický rok: 2011/2012                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,a4paper]{report}
+\setlength\textwidth{145mm}
+\setlength\textheight{247mm}
+\setlength\oddsidemargin{15mm}
+\setlength\evensidemargin{15mm}
+\setlength\topmargin{0mm}
+\setlength\headsep{0mm}
+\setlength\headheight{0mm}
+\let\openright=\clearpage
+
+% \documentclass[12pt,a4paper,twoside,openright]{report}
+% \setlength\textwidth{145mm}
+% \setlength\textheight{247mm}
+% \setlength\oddsidemargin{15mm}
+% \setlength\evensidemargin{0mm}
+% \setlength\topmargin{0mm}
+% \setlength\headsep{0mm}
+% \setlength\headheight{0mm}
+% \let\openright=\cleardoublepage
+
+
+\usepackage[utf8]{inputenc}
+
+\usepackage[english,slovak]{babel}
+
+\usepackage{aeguill}
+
+\usepackage{graphicx}
+
+\usepackage{epstopdf}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\usepackage{cmap}
+
+\usepackage{url}
+
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\renewcommand{\lstlistingname}{Kód}
+\lstdefinestyle{sharpc}{language=[Sharp]C, frame=lr, rulecolor=\color{blue!80!black}}
+
+\lstset{frame=tb,
+  language=[Sharp]C,
+  aboveskip=5mm,
+  belowskip=5mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\scriptsize\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+}
+
+
+\newcommand{\chapwithtoc}[1]{
+	\chapter*{#1}
+	\addcontentsline{toc}{chapter}{#1}
+}
+
+\newcommand{\secwithtoc}[1]{
+	\section*{#1}
+	\addcontentsline{toc}{section}{#1}
+}
+
+
+\begin{document}
+
+\selectlanguage{slovak}
+\frenchspacing
+
+
+%\title{Algoritmy detekcie a korekcie lokálnych znehodnotení digitálneho audio signálu}
+%\author{Jakub Kúdela}
+%\maketitle
+
+
+\include{01_titulna_strana}
+
+\pagenumbering{gobble}
+
+\include{02_podakovanie}
+\include{03_prehlasenie}
+\include{04_abstrakt_sk}
+\include{05_abstrakt_en}
+\include{05_obsah}
+
+\pagenumbering{arabic}
+\include{06_uvod}
+
+\include{10_vybrane_algoritmy}
+\include{20_kniznica_dapnet}
+\include{30_objektivny_experiment}
+\include{40_subjektivny_experiment}
+
+\include{90_zaver}
+
+\include{91_bibliografia}
+\include{92_zoznam_obrazkov}
+\include{93_zoznam_tabuliek}
+\appendix
+\include{94_dodatok}
+
+\end{document}

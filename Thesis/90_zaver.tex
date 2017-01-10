@@ -1,0 +1,26 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BAKALÁRSKA PRÁCA                                                           %%
+%%                                                                            %%
+%% Názov (sk): Algoritmy detekcie a korekcie lokálnych                        %%
+%%             znehodnotení digitálneho audio signálu                         %%
+%% Názov (en): Algorithms for Detection and Correction of Local               %%
+%%             Degradations in Digital Audio Signals                          %%
+%%                                                                            %%
+%% Autor: Jakub Kúdela                                                        %%
+%% Vedúci: Mgr. Daniel Toropila                                               %%
+%%                                                                            %%
+%% Akademický rok: 2011/2012                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapwithtoc{Záver}
+V práci bolo predstavených niekoľko prístupov ku detekcii a korekcii lokálnych znehodnotení digitálnych audio signálov. Medzi vybranými algoritmami bol uvedenený aj vlastný, založený na neurónovej sieti. Všetky popísané metódy boli implementované s účelom realizácie objektívneho a subjektívneho experimentu. Ich cieľom bolo porovnať predstavené metódy. Výsledky obidvoch uskutočnených experimentov svedčia o tom, že najvhodnejšie riešenie daného problému vedie cez využitie lineárneho autoregresívneho modelu.
+
+Vlastný algoritmus založený na neurónovej sieti predstavujúcej nelineárny výpočetný model je komplikované nastaviť pre naše potreby. Pri nastavení vysokého počtu tréningových iterácií siete sa výpočetný čas zásadne zvyšuje spolu s kvalitou výkonu algoritmu, čím sa stáva metóda v praxi ťažko použiteľná.
+
+Jediná metóda, ktorej aplikácia sa stala v rámci subjektívneho experimentu medzi dotazovanými poslucháčmi nežiadúca, je metóda zostavená Kasparisom a Laneom. Korekcia dlhších sekvencií poškodených vzoriek, porušujúcich spojitosť digitálnych audio signálov, pomocou adaptívneho mediánového filtru sa v rámci našej práce ukázala byť nevhodná.
+
+Existuje niekoľko spôsobov ako vylepšiť popísaný algoritmus založený na autoregresívnom modeli, ktorý v experimentoch dosiahol najlepšie výsledky. Jednou z možností je, ako sme už v práci spomenuli, zameniť metódu pre odhad parametrov modelu za robustnejšiu. Inou možnosťou pre zvýšenie efektivity algoritmu je povýšiť využitý autoregresívny model na kombinovaný autoregresívny model kĺzavých priemerov. Ďalšou možnosťou zvýšenia kvality výkonu algoritmu je pristupovať k reštaurovaniu iteratívne.
+
+V rámci práce a realizácií vybraných algoritmov sme pristupovali k problému čistenia poškodených nahrávok offline spôsobom. Nevznikala tým potreba optimalizácie jednotlivých implementácií. Do budúcnosti by bolo však vhodné implementovať optimalizované online varianty algoritmov dosahujúcich žiadúce výkony. Dostatočne optimalizované online varianty algoritmov by mohli byť použité pre reštauráciu poškodených nahrávok v reálnom čase. Mohli by byť implementované napríklad v podobe VST/RTAS pluginov alebo pluginov do rôznych audio prehrávačov.
+
+

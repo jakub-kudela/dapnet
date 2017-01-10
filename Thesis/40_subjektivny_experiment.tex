@@ -1,0 +1,41 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BAKALÁRSKA PRÁCA                                                           %%
+%%                                                                            %%
+%% Názov (sk): Algoritmy detekcie a korekcie lokálnych                        %%
+%%             znehodnotení digitálneho audio signálu                         %%
+%% Názov (en): Algorithms for Detection and Correction of Local               %%
+%%             Degradations in Digital Audio Signals                          %%
+%%                                                                            %%
+%% Autor: Jakub Kúdela                                                        %%
+%% Vedúci: Mgr. Daniel Toropila                                               %%
+%%                                                                            %%
+%% Akademický rok: 2011/2012                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Subjektívny experiment}
+
+\section{Priebeh subjektívneho experimentu}
+Pre realizáciu subjektívneho experimentu boli vybrané tri nahrávky obsahujúce reálne lokálne znednotenia. Prvé dve sú záznamy vážnej hudby v podobe nahrávok skladieb skomponovaných Modestom Mussorgským a Johannom Straussom. Tretia nahrávka je a capella súčasnej speváčky Suzanne Vega. Voľba nahrávok bola inšpirovaná výberom testovacích dát autormi knihy \cite{Godsill}. V rámci subjektívneho experimentu boli nahrávky reštaurové každým z vybraných algoritmov. Prvým bodom plánu subjektívneho experimentu bola voľba čo najvhodnejších nastavení pre každú dvojicu algoritmu a nahrávky. V tomto momente je dôležité poznamenať, že výber vhodných parametrov prebiehal striktne subjektívne za prítomnosti jediného človeka. Po aplikácii algoritmov bol súbor obsahujúci reštaurované nahrávky anonymne predostretý desiatim poslucháčom s úlohou ohodnotiť kvalitu reštaurátorského procesu na stupnici od -10 (nežiaduca zmena) do 10 (žiaduca zmena).
+
+\section{Výsledky}
+V tabuľke~\ref{tabulka:subjektivny} máme možnosť vidieť výsledné aritmetické priemery hodnotení výkonov algoritmov na daných skladbách a tiež aj celkový priemer hodnotení ich všetkých výkonov (kde N je naivný algoritmus, KL je Kasparis-Laneov, AR je autoregresívny, SAR je sínusoidovo rozšírený autoregresívny a NN je založený na neurónovej sieti).
+
+\begin{table}[!h]
+\centering
+\caption{Korekčné výsledky subjektívneho experimentu}
+\begin{tabular}{l l l l l}
+\hline
+Algoritmus & Mussorgsky & Strauss & Vega & Priemer\\
+\hline
+N & 1,8 & 1,4 & 0,1 & 1,1\\
+KL & -1,8 & -2,3 & 0,2 & -1,3\\
+AR & 4 & 4,9 & 4,6 & 4,5\\
+SAR & 4,4 & 3,8 & 3,8 & 4,0\\
+NN & 1,2 & -0,2 & 2,9 & 1,3\\
+\hline
+\end{tabular}
+\label{tabulka:subjektivny}
+\end{table}
+
+\section{Zhodnotenie}
+Vďaka výsledkom druhého experimentu môžeme usúdiť, že dotazovaní poslucháči v priemere svojich subjektívnych hodnotení ocenili aplikáciu všetkých algoritmov okrem Kasparis-Lanovho. Algoritmus založený na neurónovej sieti je spomedzi mechanizmov popísaných v práci výpočetne najnáročnejší. Jeho rýchlosť je dosť ovplyvnená voľbou samotnej siete, jej implementácie, výberom vhodných parametrov a schopnosťou výpočetného stroja realizujúceho jeho aplikáciu. Lepšie hodnotenie vlastného algoritmu by sme mohli pravdepodobne docieliť zvýšením počtu tréningových iterácii pre sieť. Naivný a Kaspari-Lanov algoritmus sú vhodné pre opravu krátkych sekvencií poškodených vzoriek, no keď dojde na dlhšie sekvencie lokálnych znehodnotení ich výsledky pôsobia na poslucháčov evidentne rušivo. Zo subjektívneho experimentu nám ako jasní favoriti vychádzajú autoregresívny algoritmus s jeho sínusoidovým rozširením.

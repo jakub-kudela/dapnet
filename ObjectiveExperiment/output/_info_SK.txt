@@ -1,0 +1,22 @@
+Reprezentácia jednotlivých sĺpcov:
+
+---------------------------------------------------------------------------------------------------
+Stĺpec    Význam
+---------------------------------------------------------------------------------------------------
+01        excitačný čas analógovo znehodnotenej nahrávky
+02        Efektivita nad analógovo znehodnotenou nahrávkou
+03        N_Efektivita nad analógovo znehodnotenou nahrávkou
+04        P_Efektivita nad analógovo znehodnotenou nahrávkou
+05        korekčný čas analógovo znehodnotenej nahrávky
+06        C_Efektivita nad analógovo znehodnotenou nahrávkou
+07        priemer absolútnych hodnôt rozdielov nad analógovo znehodnotenou nahrávkou
+08        štandardná odchýlka rozdielov nad analógovo znehodnotenou nahrávkou
+09        excitačný čas digitálne znehodnotenej nahrávky
+10        Efektivita nad digitálne znehodnotenou nahrávkou
+11        N_Efektivita nad digitálne znehodnotenou nahrávkou
+12        P_Efektivita nad digitálne znehodnotenou nahrávkou
+13        korekčný čas digitálne znehodnotenej nahrávky
+14        C_Efektivita nad digitálne znehodnotenou nahrávkou
+15        priemer absolútnych hodnôt rozdielov nad digitálne znehodnotenou nahrávkou
+16        štandardná odchýlka rozdielov nad digitálne znehodnotenou nahrávkou
+---------------------------------------------------------------------------------------------------

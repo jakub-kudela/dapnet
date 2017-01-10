@@ -1,0 +1,82 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BAKALÁRSKA PRÁCA                                                           %%
+%%                                                                            %%
+%% Názov (sk): Algoritmy detekcie a korekcie lokálnych                        %%
+%%             znehodnotení digitálneho audio signálu                         %%
+%% Názov (en): Algorithms for Detection and Correction of Local               %%
+%%             Degradations in Digital Audio Signals                          %%
+%%                                                                            %%
+%% Autor: Jakub Kúdela                                                        %%
+%% Vedúci: Mgr. Daniel Toropila                                               %%
+%%                                                                            %%
+%% Akademický rok: 2011/2012                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Knižnica DAPNet}
+Pre účely realizácie pozorovania schopností algoritmov popísaných v práci vznikla vlastná knižnica. Napísaná je v objektovo orientovanom programovacom jazyku C\# s názvom DAPNet\footnote{Skrátene z anglického .Net Digital Audio Processing Library.}. Knižnica DAPNet umožňuje svojim uživateľom editáciu digitálnych audio nahrávok uložených v súboroch formátu WAV. Súbor WAV, osem alebo šesnásť bitového charakteru, umožnuje načítať do operačnej pamäti. Vzorky načítaných nahrávok v pamäti je následne možné editovať. Po vykonaní editácie je možné upravenú nahrávku spätne uložiť na pevný disk. V súčasnosti knižnica obsahuje niekoľko offline implementácií digitálnych audio efektov. Medzi ne patria napríklad signálový zosilovač a normalizér, mediánový a vysokopriepustný filter. Knižnica obsahuje aj všetky metódy pre detekciu a korekciu lokálnych znehodnotení signálov predstavených v tejto práci. Kód~\ref{kod} poskytuje ukážku práce s knižnicou DAPNet. Program najskôr načíta poškodenú nahrávku a aplikuje na ňu algoritmus založený na autoregresívnom modeli. Pred tým, než nahrávku uloží do nového súboru, ju ešte znormalizuje.
+
+\lstinputlisting[caption=Ukážka, label=kod]{codes/example.cs}
+
+\section{Architektúra}
+Na vyššie uvedenom kóde~\ref{kod} si popíšme najpodstatnejšie triedy knižnice DAPNet. Trieda pomenovaná \texttt{Wave} je reprezentáciou digitálnej audio nahrávky formátu WAV. Metódy \texttt{Wave.Read} a \texttt{Wave.Write} čítajú a ukladajú nahrávky. Trieda \texttt{Wave} má vlastnosť \texttt{Wave.Channels}, ktorá vracia pole kanálových stôp danej nahrávky. Kanálové stopy sú inštanciami triedy \texttt{SampleVector}. Táto trieda predstavuje indexovateľnú kolekciu vzoriek uložených v hodnotovom type \texttt{double}. Na jednotlivé stopy je možné aplikovať audio efekty implementujúce abstraktnú triedu \texttt{Effect} s abstraktnou metódou \texttt{Effect.Process}. Trieda normalizéru \texttt{PeakNormalizer} z ukážky~\ref{kod} je jednoduchým príkladom implementácie triedy \texttt{Effect}. 
+
+V úvode kapitoly už bolo spomenuté, že knižnica DAPNet obsahuje všetky metódy pre odstraňovanie lokálnych znehodnotení z nahrávok. Jednotlivé algoritmy, detekčné brány a modifikátory sú reprezentované postupne abstraktnými triedami \texttt{Declicker}, \texttt{DetectionGate} a \texttt{DetectionModificator}. Binárnemu detekčnému signálu odpovedá trieda \texttt{DetectionVector}. Je to indexovaťelná kolekcia binárnych vzoriek uložených v hodnotovom type \texttt{bool}. Dizajn tried \texttt{Declicker}, \texttt{DetectionGate} a \texttt{DetectionModificator} odpovedá zobecneniu, ktoré sme si uviedli na začiatku práce. Pre realizáciu algoritmu poskytujúceho excitáciu a korekciu poškodeného signálu v zmysle knižce DAPNet, je potrebné implementovať triedu \texttt{Declicker} definovaním metód \texttt{Declicker.GetExcitations} a \texttt{Declicker.Correct}. Metóda \texttt{Declicker.GetExcitations} vracia pre vstupný signál excitačný a metóda \texttt{Declicker.Correct} opravuje signál na základe poskytnutej detekcie. V ukážkovom kóde~\ref{kod} máme možnosť vidieť volanie algoritmu založenom na autoregresívnom modeli. Je reprezentovaný inštanciou triedy \texttt{ARDeclicker}. 
+
+Rozhranie abstraktnej triedy brány \texttt{DetectionGate} si vynucuje implementáciu metódy \texttt{DetectionGate.Detect}. Metóda \texttt{DetectionGate.Detect} vracia pre vstupný signál prvotnú detekciu. Detekčnou bránou vo vyššie uvedenom kóde~\ref{kod} je inštancia triedy \texttt{DeviationSimpleGate}. Predstavuje jednoduchú bránu smerodajnej odchýlky s jedným prahom. 
+
+Modifikátory implementujú metódu \texttt{DetectionModificator.Modify}. Metóda \texttt{DetectionModificator.Modify} pracuje len s binárnym detekčným signálom, ako bolo uvedené pri opise obecného algoritmu. V kóde~\ref{kod} predstavuje detekčný modifikátor inštancia triedy \texttt{DetectionWidener}. Reprezentuje detekčný rozširovač popísaný v práci. 
+
+Nasledujúce zoznamy zoskupené v tabuľkách~\ref{tabulka:algoritmy},~\ref{tabulka:brany} a~\ref{tabulka:modifikatory} sú zhrnutiami tried knižnice DAPNet implementujúcich metódy detekcie a korekcie lokálnych znehodnotení popísaných v práci:
+
+\begin{table}[!h]
+\centering
+\caption{Algoritmy v DAPNet}
+\begin{tabular}{l l}
+\hline
+Trieda & Algoritmus\\
+\hline
+\texttt{NDeclicker} & naivný\\
+\texttt{KLDeclicker} & Kasparis-Laneov\\
+\texttt{ARDeclicker} & autoregresívny\\
+\texttt{SARDeclicker} & sínusoidovo rozšírený autoregresívny\\
+\texttt{NNDeclicker} & založený na neurónovej sieti\\
+\hline
+\end{tabular}
+\label{tabulka:algoritmy}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\caption{Detekčné brány v DAPNet}
+\begin{tabular}{l l}
+\hline
+Trieda & Detekčná brána\\
+\hline
+\texttt{SimpleGate} & jednoduchá \\
+\texttt{DoubleGate} & jednoduchá s dvomi prahmi\\
+\texttt{DeviationSimpleGate} & smerodajnej odchýlky \\
+\texttt{DeviationDoubleGate} & smerodajnej odchýlky s dvomi prahmi\\
+\texttt{AdaptiveSimpleGate} & adaptívna smerodajnej odchýlky\\
+\texttt{AdaptiveDoubleGate} & adaptívna smerodajnej odchýlky s dvomi prahmi\\
+\hline
+\end{tabular}
+\label{tabulka:brany}
+\end{table}
+
+\begin{table}[!h]
+\centering
+\caption{Detekčné modifikátory v DAPNet}
+\begin{tabular}{l l}
+\hline
+Trieda & Detekčný modifikátor\\
+\hline
+\texttt{DetectionWidener} & rozširovač\\
+\texttt{DetectionJoiner} & prepájač\\
+\texttt{DetectionShifter} & posúvač\\
+\hline
+\end{tabular}
+\label{tabulka:modifikatory}
+\end{table}
+
+\section{Použité knižnice}
+V implementácii knižnice DAPNet bolo použitých niekoľko knižníc. V prvom rade je to matematická knižnica MathNet.Numerics \cite{Numerics}. Poskytuje knižnici DAPNet hlavne metódy pre riešenie sústav rovníc a Bluesteinov algoritmus pre výpočet rýchlej Fourierovej transformácie\footnote{Preložené z anglického Bluestein's Fast Fourier Transform algorithm.} nad vektorom arbitrárnej veľkosti. Pri implementácii vlastného návrhu algoritmu založenom na neurónovej sieti bola využitá knižnica NeuronDotNet \cite{NeuronDotNet}, ktorá poskytla výpočetný model viacvrstvového perceptrónu. V poslednom rade bola použitá knižnica ZedGraph \cite{ZedGraph} pre vykreslovanie grafov v okennej aplikácii s názvom DeclickerInspector, ktorú bude predstavená v nasledujúcej kapitole. Dôležité je spomenúť, že pri práci s uvedenými knižnicami nedošlo k porušeniu licenčných podmienok.

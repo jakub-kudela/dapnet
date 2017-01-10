@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5A409A2F-39B0-4983-BA37-0C57492F40F0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAPNet</RootNamespace>
+    <AssemblyName>DAPNet</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DAPNet.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>Lib\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuralNetwork">
+      <HintPath>Lib\NeuralNetwork.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuronDotNet.Core">
+      <HintPath>Lib\NeuronDotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Declicking\SamplesDegrader.cs" />
+    <Compile Include="Declicking\Declickers\ARDeclicker.cs" />
+    <Compile Include="Declicking\Declickers\Declicker.cs" />
+    <Compile Include="Declicking\Declickers\KLDeclicker.cs" />
+    <Compile Include="Declicking\Declickers\NDeclicker.cs" />
+    <Compile Include="Declicking\Declickers\NNDeclicker.cs" />
+    <Compile Include="Declicking\DetectionVector.cs" />
+    <Compile Include="Declicking\Declickers\SARDeclicker.cs" />
+    <Compile Include="Declicking\Declickers\SDeclicker.cs" />
+    <Compile Include="Declicking\Declickers\SNNDeclicker.cs" />
+    <Compile Include="Declicking\DetectionGates\AdaptiveGate.cs" />
+    <Compile Include="Declicking\DetectionGates\AdaptiveDoubleGate.cs" />
+    <Compile Include="Declicking\DetectionGates\DeviationGate.cs" />
+    <Compile Include="Declicking\DetectionGates\DeviationDoubleGate.cs" />
+    <Compile Include="Declicking\DetectionGates\DetectionGate.cs" />
+    <Compile Include="Processing\Amplifier.cs" />
+    <Compile Include="Declicking\DetectionGates\SimpleDoubleGate.cs" />
+    <Compile Include="Declicking\DetectionGates\SimpleGate.cs" />
+    <Compile Include="Declicking\DetectionModifiers\DetectionShifter.cs" />
+    <Compile Include="Declicking\DetectionModifiers\DetectionJoiner.cs" />
+    <Compile Include="Declicking\DetectionModifiers\DetectionWidener.cs" />
+    <Compile Include="Declicking\DetectionModifiers\DetectionModifier.cs" />
+    <Compile Include="Processing\DerivativeFilter.cs" />
+    <Compile Include="Processing\Effect.cs" />
+    <Compile Include="Processing\MedianFilter.cs" />
+    <Compile Include="Processing\PeakNormalizer.cs" />
+    <Compile Include="Processing\LocalMeanOperator.cs" />
+    <Compile Include="Processing\RecursiveMedianFilter.cs" />
+    <Compile Include="SampleConversion\DefaultSampleConverterFactory.cs" />
+    <Compile Include="SampleConversion\SampleConverterFactory.cs" />
+    <Compile Include="SampleVector.cs" />
+    <Compile Include="Wave.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleConversion\SampleConverter16Bit.cs" />
+    <Compile Include="SampleConversion\SampleConverter8Bit.cs" />
+    <Compile Include="SampleConversion\SampleConverter.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
